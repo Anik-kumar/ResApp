@@ -1,0 +1,38 @@
+ ## Fast food
+ Sandwich, Pita, Hamburger, Fried Chicken, French Fries, Onion ring, Taco, Pizza, Hot Dog, Pasta
+
+ ## Milkshake Beverage
+ Vanilla Coffee shake, hot chocolate milkshake, Oreo shake, apple pie milkshake, ice cream shake, strawberry shake, carrot milk shake, papaya milk shake,
+ banana milk shake, vanilla milk shake, mango milk shake,
+
+ ## Soft drinks
+ Pepsi, Coca-cola, Sprite, Mountain-Dew, Fanta, Juice
+
+ ## alcoholic drinks
+ vodka, gin, rum, whisky, brandy, beer, wine, tequila, scotch
+
+ ## Breakfast/Evening foods
+ paratha, Grilled chicken, Haleem, Sheek Kabab,
+
+ ## Street Food
+ Fuchka, Falooda, Roshmalai
+
+ ## Main dishes
+ Kachchi Biryani, Bhuna Khichuri, Morog Polao, Rice, Chicken curry, Fish curry, Pulse, Chicken Biriyani, Chicken Khichuri, Mutton Khichuri,
+
+
+ ## Juice
+ Carrot, Amra, apple, mango, orange, malta, lemon, pineapple, mixed
+
+
+
+https://cityinnltd.com/bangladeshi-food-menu/
+
+
+food {
+  name:
+  type:
+  price:
+  veg:
+  img:
+}
