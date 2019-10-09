@@ -1,0 +1,25 @@
+#login-form{
+  text-align: center;
+  width: 100%;
+  position: relative;
+  /*border: 1px solid saddlebrown;*/
+}
+
+#inner-login-form {
+  width: 30%;
+  min-width: 200px;
+  position: relative;
+  /*border: 1px solid green;*/
+  margin: auto;
+}
+
+mat-action-row{
+  margin: auto;
+  margin-left: 0;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+

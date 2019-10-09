@@ -1,0 +1,69 @@
+
+<mat-accordion>
+  <mat-card>
+    <div id="reg-form">
+      <div id="inner-reg-form">
+        <form (submit)="onRegister(regForm)" #regForm="ngForm" >
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >
+            <mat-error *ngIf="firstname.invalid">Enter Valid Name</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" id="lastName" name="lastName" ngModel required minlength="3" #lastname="ngModel" >
+            <mat-error *ngIf="lastname.invalid">Enter Valid Name</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" id="email" name="email" ngModel required minlength="3" #email="ngModel" >
+            <mat-error *ngIf="email.invalid">Enter Valid Name</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" id="password" name="password" ngModel required minlength="3" #password="ngModel" >
+            <mat-error *ngIf="password.invalid">Enter Password</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Retype Password</mat-label>
+            <input matInput type="password" id="password2" name="password2" ngModel required minlength="3" #password2="ngModel" >
+            <mat-error *ngIf="password2.invalid">Enter Password</mat-error>
+          </mat-form-field>
+          <label>Date of Birth</label>
+          <mat-form-field>
+            <mat-label>Month</mat-label>
+            <mat-select id="dobmonth" name="dobMonth" ngModel required>
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let month of months" [value]="month">{{month}}</mat-option>
+            </mat-select>
+<!--            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >-->
+<!--            <mat-error *ngIf="firstname.invalid">Select Month</mat-error>-->
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Day</mat-label>
+            <mat-select id="dobday" name="dobDay" ngModel required>
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let i of days" [value]="i+1">{{i+1}}</mat-option>
+            </mat-select>
+            <!--            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >-->
+<!--            <mat-error *ngIf="firstname.invalid">Select Day</mat-error>-->
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Year</mat-label>
+            <mat-select id="dobyear" name="dobYear" ngModel required #dobYear="ngModel">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let i of years" [value]="2018-i">{{2018-i}}</mat-option>
+            </mat-select>
+            <!--            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >-->
+<!--            <mat-error *ngIf="dobYear.inv">Select Year</mat-error>-->
+          </mat-form-field>
+          <mat-action-row>
+            <button type="submit" mat-button color="accent">SUBMIT</button>
+          </mat-action-row>
+
+        </form>
+      </div>
+    </div>
+
+  </mat-card>
+</mat-accordion>

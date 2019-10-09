@@ -1,0 +1,23 @@
+mat-form-field{
+  width: 100%;
+
+}
+
+mat-action-row button{
+  background-color: #1f7375dd;
+  color: azure;
+}
+
+#inner-reg-form{
+  width: 40%;
+  min-width: 200px;
+  margin: auto;
+
+
+}
+
+#reg-form{
+
+  min-width: 200px;
+}
+

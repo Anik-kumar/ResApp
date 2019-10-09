@@ -1,0 +1,26 @@
+
+<mat-accordion>
+  <mat-card>
+    <div id="login-form">
+    <div id="inner-login-form">
+      <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+        <mat-form-field>
+          <mat-label> Username </mat-label>
+          <input type="text" matInput name="username" id="username" ngModel required minlength="4" #username="ngModel" >
+          <mat-error *ngIf="username.invalid">Enter Valid Username</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> Password </mat-label>
+          <input type="password" matInput name="password" id="password" ngModel required minlength="4" #password="ngModel" >
+          <mat-error *ngIf="password.invalid">Enter Valid Password</mat-error>
+        </mat-form-field>
+        <mat-action-row id="alignLeft">
+          <button mat-button color="primary" type="submit">Login</button>
+          <button mat-button color="accent">Sign-Up</button>
+        </mat-action-row>
+      </form>
+    </div>
+    </div>
+
+  </mat-card>
+</mat-accordion>

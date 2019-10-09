@@ -1,0 +1,13 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+#addItem{
+  width: 40%;
+  margin: auto;
+}
+
+h1{
+  font-family: 'Fira Code', sans-serif;
+}
