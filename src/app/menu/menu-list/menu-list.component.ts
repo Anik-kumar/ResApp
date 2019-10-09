@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+
+import { MenuService } from '../menu.service';
+import {MenuModel} from '../menu.model';
 
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.css']
 })
-export class MenuListComponent {
+export class MenuListComponent implements OnInit{
 
-  items = [
-    { name: 'Dark Fantasy', type: 'Cookie', img: './../../assets/dark-fantasy-1280x800-cookies-chocolate-hd-8971.jpg'},
-    { name: 'Burger', type: 'Fast Food', img: './../../assets/fast_food_burger-wallpaper-1280x800.jpg'},
-    { name: 'Orange', type: 'Fruit', img: './../../assets/orange_fruits-wallpaper-1280x800.jpg'},
-    { name: 'Calsberg', type: 'Beverage', img: './../../assets/carlsberg-1024x768-beer-glass-4k-11205.jpg'},
-    { name: 'Margarita', type: 'Beverage', img: './../../assets/margarita_cocktail-wallpaper-1280x800.jpg'}
-  ];
+  items: MenuModel[] = [];
+  private itemSub: Subscription; /* subscription is used for updating items list */
+
+  constructor(private menuService: MenuService) { }
+
+
+
+  ngOnInit() {
+    this.menuService.getMenuItems();
+    this.itemSub = this.menuService.getItemUpdateListener()
+      .subscribe( (items: MenuModel[]) => {
+        this.items = items;
+      });
+  }
+
+  onDelete(itemId: string) {
+    // console.log(itemId + "=====");
+    this.menuService.deleteItem(itemId);
+  }
+
 
 }

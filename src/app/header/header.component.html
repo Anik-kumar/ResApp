@@ -12,15 +12,24 @@
   <span class="example-fill-remaining-space"></span>
     <div>
       <a mat-button href="">Home</a>
-      <button mat-button [matMenuTriggerFor]="menu" (click)="loadMenu()">Menu</button>
+<!--      <button mat-button routerLink="/menu">Menu</button>-->
+      <a mat-button routerLink="/menu">Menu</a>
+<!--      <button mat-button [matMenuTriggerFor]="menu" (click)="loadMenu()" [routerLink]="'/menu'">Menu</button>-->
 <!--      <mat -menu #menu="matMenu">-->
 <!--        <a mat-menu-item>Bangladeshi Food</a>-->
 <!--        <a mat-menu-item>European Food</a>-->
 <!--        <a mat-menu-item>Beverage</a>-->
 <!--      </mat-menu>-->
-      <a mat-button href="">Online Order</a>
-      <a mat-button href="">About</a>
-      <a mat-button href="">Contact</a>
+
+      <a mat-button routerLink="/add/item">Add Item</a>
+      <a mat-button routerLink="/checkout">Checkout</a>
+<!--      <a mat-button href=""></a>-->
+<!--      <a mat-button href=""></a>-->
+<!--      <a mat-button href=""></a>-->
+      <a mat-button routerLink="/about">About</a>
+      <a mat-button routerLink="/contact">Contact</a>
+      <a mat-button routerLink="/reg">Registration</a>
+      <a mat-button routerLink="/login">Login</a>
       <a mat-button [routerLink]="'/accounts'"> Accounts </a>
     </div>
   <!--<span class="example-fill-remaining-space"></span>-->
@@ -39,13 +48,13 @@
       <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
       <a mat-list-item [routerLink]="'/activities'"> Activities </a>
       <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
-      &lt;!&ndash;<a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>&ndash;&gt;
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <div>
-
+      <h3>AAA</h3>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>-->

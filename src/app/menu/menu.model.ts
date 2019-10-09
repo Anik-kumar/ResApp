@@ -1,6 +1,8 @@
 export interface MenuModel {
+  id: string;
   name: string;
   type: string;
-  price: string;
+  quantity: string;
+  price: number;
   img: string;
 }

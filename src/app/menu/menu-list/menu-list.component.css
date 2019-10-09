@@ -1,4 +1,22 @@
 #menu-div{
   text-align: center;
-  
+  width: 60%;
+
+}
+
+#menu-div mat-card {
+  background-color: lightblue;
+}
+
+#menu-div:hover {
+
+}
+
+#inner-div {
+  margin: auto;
+
+}
+
+mat-card {
+  margin-bottom: 5px;
 }
