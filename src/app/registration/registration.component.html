@@ -6,17 +6,17 @@
         <form (submit)="onRegister(regForm)" #regForm="ngForm" >
           <mat-form-field>
             <mat-label>First Name</mat-label>
-            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >
-            <mat-error *ngIf="firstname.invalid">Enter Valid Name</mat-error>
+            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstName="ngModel" >
+            <mat-error *ngIf="firstName.invalid">Enter Valid Name</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Last Name</mat-label>
-            <input matInput type="text" id="lastName" name="lastName" ngModel required minlength="3" #lastname="ngModel" >
-            <mat-error *ngIf="lastname.invalid">Enter Valid Name</mat-error>
+            <input matInput type="text" id="lastName" name="lastName" ngModel required minlength="3" #lastName="ngModel" >
+            <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput type="email" id="email" name="email" ngModel required minlength="3" #email="ngModel" >
+            <input matInput type="email" id="email" name="email" ngModel required minlength="6" #email="ngModel" >
             <mat-error *ngIf="email.invalid">Enter Valid Name</mat-error>
           </mat-form-field>
           <mat-form-field>
@@ -32,30 +32,25 @@
           <label>Date of Birth</label>
           <mat-form-field>
             <mat-label>Month</mat-label>
-            <mat-select id="dobmonth" name="dobMonth" ngModel required>
+            <mat-select id="dobMonth" name="dobMonth" ngModel required>
               <mat-option>None</mat-option>
               <mat-option *ngFor="let month of months" [value]="month">{{month}}</mat-option>
             </mat-select>
-<!--            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >-->
-<!--            <mat-error *ngIf="firstname.invalid">Select Month</mat-error>-->
           </mat-form-field>
           <mat-form-field>
             <mat-label>Day</mat-label>
-            <mat-select id="dobday" name="dobDay" ngModel required>
+            <mat-select id="dobDay" name="dobDay" ngModel required #dobDay="ngModel">
               <mat-option>None</mat-option>
               <mat-option *ngFor="let i of days" [value]="i+1">{{i+1}}</mat-option>
             </mat-select>
-            <!--            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >-->
-<!--            <mat-error *ngIf="firstname.invalid">Select Day</mat-error>-->
+            <mat-error *ngIf="dobDay ">Select Day</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Year</mat-label>
-            <mat-select id="dobyear" name="dobYear" ngModel required #dobYear="ngModel">
+            <mat-select id="dobYear" name="dobYear" ngModel required>
               <mat-option>None</mat-option>
               <mat-option *ngFor="let i of years" [value]="2018-i">{{2018-i}}</mat-option>
             </mat-select>
-            <!--            <input matInput type="text" id="firstName" name="firstName" ngModel required minlength="3" #firstname="ngModel" >-->
-<!--            <mat-error *ngIf="dobYear.inv">Select Year</mat-error>-->
           </mat-form-field>
           <mat-action-row>
             <button type="submit" mat-button color="accent">SUBMIT</button>

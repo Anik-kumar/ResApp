@@ -25,18 +25,23 @@ export class RegistrationComponent implements OnInit {
   onRegister(event: NgForm) {
     // console.log(event);
 
-    const firstName = event.value.firstName;
-    const lastName = event.value.lastName;
-    const email = event.value.email;
-    const password = event.value.password;
-    const password2 = event.value.password2;
-    const dobMonth = event.value.dobMonth;
-    const dobDay = event.value.dobDay;
-    const dobYear = event.value.dobYear;
+    if ( event.invalid ) {
+      console.log("Form is Invalid");
+    } else {
+      const firstName = event.value.firstName;
+      const lastName = event.value.lastName;
+      const email = event.value.email;
+      const password = event.value.password;
+      const password2 = event.value.password2;
+      const dobMonth = event.value.dobMonth;
+      const dobDay = event.value.dobDay;
+      const dobYear = event.value.dobYear;
 
-    console.log(firstName, lastName, email, password, password2, dobMonth, dobDay, dobYear);
+      // console.log(firstName, lastName, email, password, password2, dobMonth, dobDay, dobYear);
 
-    this.regService.registerNewUser(firstName, lastName, email, password, password2, dobDay, dobMonth, dobYear);
+      this.regService.registerNewUser(firstName, lastName, email, password, password2, dobDay, dobMonth, dobYear);
+      // this.regService.formReset();
+    }
 
   }
 
