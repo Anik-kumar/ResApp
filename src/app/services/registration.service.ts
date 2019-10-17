@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { RegistrationModel } from './registration/registration.model';
+import { RegistrationModel } from '../registration/registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,6 @@ export class RegistrationService {
       } catch (e) {
         console.log('error error => ' + e);
       }
-
 
     } else {
       console.log('Password does not Match');

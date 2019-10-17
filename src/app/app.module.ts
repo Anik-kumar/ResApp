@@ -16,7 +16,8 @@ import {
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
-import {RegistrationService} from './registration.service';
+import {RegistrationService} from './services/registration.service';
+import {CommonService} from "./services/common.service";
 // components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -31,6 +32,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AddItemComponent } from './menu/add-item/add-item.component';
 import { HomeComponent } from './home/home.component';
+
 
 
 
@@ -67,7 +69,7 @@ import { HomeComponent } from './home/home.component';
     MatExpansionModule,
     MatSelectModule
   ],
-  providers: [RegistrationService],
+  providers: [RegistrationService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -147,5 +147,17 @@ app.post('/api/reg/user', (req, res) => {
 });
 
 
+app.get('/api/get/users', (req, res) => {
+  User.find()
+    .then(documents => {
+      // console.log(" Users are retrived ", documents);
+      res.status(200).json({
+        message: "Users are retrived",
+        users: documents
+      })
+    });
+});
+
+
 
 module.exports = app;
