@@ -6,6 +6,7 @@ const Joi = require('joi');
 
 const Item = require('./models/item');
 const User = require('./models/user');
+const UserRouter = require('./routes/UserRouter');
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true }  )
@@ -27,6 +28,8 @@ app.use((req, res, next) => {
 });
 
 
+
+app.use('/api/user', UserRouter);
 
 app.get('/api/food/items', (req, res, next)=>{
   Item.find()
@@ -105,7 +108,7 @@ app.post('/api/reg/user', (req, res) => {
     lastName: Joi.string().trim().min(3).max(18).required(),
     password: Joi.string().trim().min(4).max(20).required(),
     dob: Joi.string().trim().required(),
-    id: Joi.any()
+    _id: Joi.any()
   });
   // const schema2 = Joi.object.key
   let isError = false;
