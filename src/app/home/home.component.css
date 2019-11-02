@@ -1,0 +1,14 @@
+mat-card {
+  background-img: './../../assets/summer_popsicles-wallpaper-1280x800.jpg';
+  border: 2px solid black;
+}
+
+h2 {
+  background: blueviolet;
+  padding: 5px;
+}
+
+div{
+  background: cadetblue;
+  height: 600px;
+}

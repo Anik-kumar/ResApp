@@ -14,10 +14,11 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AddItemComponent } from './menu/add-item/add-item.component';
 
 
+
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [] },
   { path: 'reg', component: RegistrationComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'contact', component: ContactUsComponent },

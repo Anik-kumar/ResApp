@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHandler, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { ApiEndpoints } from "./api-endpoints";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiEndpoints } from './api-endpoints';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class UserApiService {
 

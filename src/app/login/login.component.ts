@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CommonService } from "../services/common.service";
-import { UserApiService } from "../services/user-api.service";
+import { Router} from '@angular/router';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,9 @@ import { UserApiService } from "../services/user-api.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private cmn: CommonService, private userApiService: UserApiService) { }
+  constructor(private cmn: CommonService, private router: Router) { }
+
+  // validator = require('express-validator');
 
   ngOnInit() {
   }
@@ -21,14 +23,24 @@ export class LoginComponent implements OnInit {
     const pass = event.value.password;
     console.log(user, pass);
 
-    this.cmn.isUserValid(user, pass)
-      .subscribe(found => {
-        if (found) {
-          console.log("User Found");
-        } else {
-          console.log('User not Found');
-        }
-      });
+    if (event.invalid) {
+      console.log('Invalid Login Form');
+    } else {
+      this.cmn.isUserValid(user, pass)
+        .subscribe(found => {
+          if (found) {
+            console.log('User Found');
+            // window.location.href = this.endpointApi.HOME_URL;
+            // window.location.href = 'http://localhost:4200/home';
+            this.router.navigate(['/home']);
+            // this.validator.
+          } else {
+            console.log('User not Found');
+            this.router.navigate(['/login']);
+            // window.location.href = 'http://localhost:4200/login';
+          }
+        });
+    }
 
   }
 

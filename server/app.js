@@ -2,12 +2,24 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const session = require('express-session');
+const mongodbSession = require('connect-mongodb-session')(session);
+const validator = require('express-validator');
+const http = require('http');
+const Cookies = require('cookies');
+const nodeCookie = require('node-cookie');
+const cookieParser = require('cookie-parser');
 // const ejs = require('ejs');
 
 const Item = require('./models/item');
 const User = require('./models/user');
 const UserRouter = require('./routes/UserRouter');
+const ItemRouter = require('./routes/ItemRouter');
 const app = express();
+const store = new mongodbSession({
+  uri: 'mongodb://localhost:27017/restaurant',
+  collections: 'sessions'
+});
 
 mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true }  )
   .then(() => {
@@ -19,6 +31,9 @@ mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(
+  session({ secret: "top secret message", resave: false, saveUninitialized: false, store: store })
+);
 // app.set('views-engine', 'ejs');
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,8 +45,9 @@ app.use((req, res, next) => {
 
 
 app.use('/api/user', UserRouter);
+app.use('/api/item', ItemRouter);
 
-app.get('/api/food/items', (req, res, next)=>{
+/*app.get('/api/item/foods', (req, res, next)=>{
   Item.find()
     .then(documents => {
       res.status(201).json({
@@ -43,17 +59,17 @@ app.get('/api/food/items', (req, res, next)=>{
 });
 
 
-app.post('/api/add/item', (req, res) => {
+app.post('/api/item/add', (req, res) => {
   // res.end('Hello');
   // res.render("addItem.ejs");
   // console.log("A");
 
   const joiItem = Joi.object().keys({
-    id: any(),
+    id: Joi.any(),
     name: Joi.string().trim().min(3).max(15).required(),
     type: Joi.string().trim().min(3).max(15).required(),
     quantity : Joi.string().trim().min(3).max(15).required(),
-    price : Joi.number().trim().greater(0).max(15).required(),
+    price : Joi.number().greater(0).min(15).required(),
     img : Joi.string().trim().min(7).required()
   });
 
@@ -85,7 +101,7 @@ app.post('/api/add/item', (req, res) => {
 
 });
 
-app.delete('/api/delete/item/:id', (req, res) => {
+app.delete('/api/item/delete/:id', (req, res) => {
   console.log(req.params.id);
 
   Item.deleteOne({ _id: req.params.id })
@@ -147,7 +163,7 @@ app.post('/api/reg/user', (req, res) => {
   // console.log(user.dob, user.password, user.email, user.firstName, user.lastName);
 
 
-});
+});*/
 
 
 app.get('/api/get/users', (req, res) => {
@@ -159,6 +175,30 @@ app.get('/api/get/users', (req, res) => {
         users: documents
       })
     });
+});
+
+
+app.get('/home', (req, res) => {
+  var cookies = Cookies(req, res);
+
+  // nodeCookie.create(res, "admin", "data data", "veryverylongsecret");
+
+  // var userId = 2;
+
+  // cookies.set('userID', 2);
+
+  // console.log(nodeCookie.get(res, 'admin'));
+
+  let options = {
+    maxAge: 1000 * 60 * 60 * 2,
+    httpOnly: true,
+    signed: true
+  };
+
+  req.cookie('Admin', 'Admin cookie data', options);
+
+  console.log(req.cookies);
+
 });
 
 

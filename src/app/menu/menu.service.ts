@@ -15,7 +15,7 @@ export class MenuService {
   constructor(public http: HttpClient) { }
 
   getMenuItems() {
-    this.http.get<{ message: string, items: any}>('http://localhost:3000/api/food/items')
+    this.http.get<{ message: string, items: any}>('http://localhost:3000/api/item/foods')
       .pipe(map((postItems) => {
         return postItems.items.map(item => {
           return {
@@ -37,7 +37,7 @@ export class MenuService {
   addMenuItem(name: string, type: string, quantity: string, price: number, link: string) {
 
     const item: MenuModel = { id: null, name: name, type: type, quantity: quantity, price: price, img: link };
-    this.http.post<{message: string, id: string}>('http://localhost:3000/api/add/item', item)
+    this.http.post<{message: string, id: string}>('http://localhost:3000/api/item/add', item)
       .subscribe(resData => {
         item.id = resData.id;
         this.menuItems.push(item);
@@ -51,7 +51,7 @@ export class MenuService {
 
 
   deleteItem(itemId: string) {
-    this.http.delete('http://localhost:3000/api/delete/item/' + itemId)
+    this.http.delete('http://localhost:3000/api/item/delete/' + itemId)
       .subscribe(() => {
         const newUpdatedItems = this.menuItems.filter(item => item.id !== itemId);
         this.menuItems = newUpdatedItems;

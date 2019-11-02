@@ -15,7 +15,7 @@ export class RegistrationService {
 
     if (pass === pass2) {
       const user: RegistrationModel = {
-        id: null,
+        _id: null,
         firstName: fName,
         lastName: lName,
         email: email,
