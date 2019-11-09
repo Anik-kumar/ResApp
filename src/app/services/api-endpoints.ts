@@ -5,6 +5,7 @@ export class ApiEndpoints {
 
   public static readonly GET_USERS_API = ApiEndpoints.SERVER_URL + '/api/user/all';
   public static readonly FIND_USER_API = ApiEndpoints.SERVER_URL + '/api/user/findone';
+  public static readonly AUTH_TOKEN = ApiEndpoints.SERVER_URL + '/api/auth/token';
 
   public static readonly HOME_URL = ApiEndpoints.SERVER_URL + '/home';
 

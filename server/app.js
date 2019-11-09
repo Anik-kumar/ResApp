@@ -15,6 +15,7 @@ const Item = require('./models/item');
 const User = require('./models/user');
 const UserRouter = require('./routes/UserRouter');
 const ItemRouter = require('./routes/ItemRouter');
+const AuthRouter = require('./routes/AuthRouter');
 const app = express();
 const store = new mongodbSession({
   uri: 'mongodb://localhost:27017/restaurant',
@@ -46,6 +47,8 @@ app.use((req, res, next) => {
 
 app.use('/api/user', UserRouter);
 app.use('/api/item', ItemRouter);
+app.use('/api/auth', AuthRouter);
+
 
 /*app.get('/api/item/foods', (req, res, next)=>{
   Item.find()
@@ -195,7 +198,7 @@ app.get('/home', (req, res) => {
     signed: true
   };
 
-  req.cookie('Admin', 'Admin cookie data', options);
+  res.cookie('Admin', 'Admin cookie data', options);
 
   console.log(req.cookies);
 

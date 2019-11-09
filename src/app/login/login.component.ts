@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { CommonService } from '../services/common.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { CommonService } from '../services/common.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private cmn: CommonService, private router: Router) { }
+  constructor(private cmn: CommonService, private router: Router, private http: HttpClient) { }
+  private token;
 
   // validator = require('express-validator');
 
@@ -32,6 +34,9 @@ export class LoginComponent implements OnInit {
             console.log('User Found');
             // window.location.href = this.endpointApi.HOME_URL;
             // window.location.href = 'http://localhost:4200/home';
+            // this.token = this.cmn.getNewToken(user, pass);
+            this.token = this.obc(user, pass);
+            console.log('Login Com => ', this.token);
             this.router.navigate(['/home']);
             // this.validator.
           } else {
@@ -42,6 +47,12 @@ export class LoginComponent implements OnInit {
         });
     }
 
+  }
+
+  async obc(user, pass) {
+    const result = await this.cmn.getNewToken(user, pass);
+    console.log('Login Com 2 => ', result);
+    return result;
   }
 
   getUsersDetails() {

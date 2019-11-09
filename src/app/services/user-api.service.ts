@@ -19,4 +19,8 @@ export class UserApiService {
     return this.http.post<any>(ApiEndpoints.FIND_USER_API, { 'email': username, 'password': password });
   }
 
+  // getToken(user): Observable<any> {
+  //   return this.http.post<any>(ApiEndpoints.AUTH_TOKEN, { params: user });
+  // }
+
 }

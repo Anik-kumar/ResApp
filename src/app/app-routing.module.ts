@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './auth.guard';
 
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { HomeComponent } from './home/home.component';
@@ -17,8 +18,8 @@ import { AddItemComponent } from './menu/add-item/add-item.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent, canActivate: [] },
+  { path: 'home', component: HomeComponent, canActivate: [] },
+  { path: 'login', component: LoginComponent },
   { path: 'reg', component: RegistrationComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'contact', component: ContactUsComponent },
