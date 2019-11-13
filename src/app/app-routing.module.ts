@@ -18,7 +18,7 @@ import { AddItemComponent } from './menu/add-item/add-item.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'home', component: HomeComponent, canActivate: [] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'reg', component: RegistrationComponent },
   { path: 'footer', component: FooterComponent },

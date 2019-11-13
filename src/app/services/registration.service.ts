@@ -24,12 +24,12 @@ export class RegistrationService {
       };
       // console.log(user);
       try {
-        this.http.post<{id: string}>('http://localhost:3000/api/reg/user', user)
+        this.http.post<{id: string}>('http://localhost:3000/api/user/reg', user)
           .subscribe(resData => {
-            console.log('idid => ' + resData.id);
+            console.log('RegService => ', resData);
           });
       } catch (e) {
-        console.log('error error => ' + e);
+        console.log('RegService => error error => ' + e);
       }
 
     } else {
@@ -37,7 +37,6 @@ export class RegistrationService {
     }
 
     //
-
 
   }
 }

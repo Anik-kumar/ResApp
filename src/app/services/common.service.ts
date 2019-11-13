@@ -54,7 +54,7 @@ export class CommonService {
     //   });
     // });
 
-    let data: string ;
+    var data;
 
     try{
       this.http.get<any>('http://localhost:3000/api/auth/token', { params: user })
@@ -62,18 +62,22 @@ export class CommonService {
           // console.log('From CommonService 1 => ');
           console.log('Token => ', resp.token);
           data = resp.token;
+          console.log('Token 2 => ', data);
+          const path = 'path=/;';
+          const expires = 'expires=' + ((new Date()).getTime() + (1000*60*2)) ;
+          document.cookie = 'Token=' + data + ';' + expires + ';' + path;
+          document.cookie = 'Username=' + username + ';' + expires + ';' + path;
+          document.cookie = 'Password=' + password + ';' + expires + ';' + path;
+
+          console.log('Cookies =>' , document.cookie);
+          // console.log();
+          // document.cookie = cookieStr;
+          return data;
           // return resp.token;
         });
-        // data = resData;
-
-      console.log('From CommonService 2 => ', data);
-      return data;
-      // ,
-      // (err) => console.log(err) );
-     } catch(e) {
+     } catch (e) {
       console.log('CommonService gettoken error => ', e);
     }
-    return data;
     // next(data);
 
   }

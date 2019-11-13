@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const session = require('express-session');
-const mongodbSession = require('connect-mongodb-session')(session);
+const expSession = require('express-session');
+const mongodbSession = require('connect-mongodb-session')(expSession);
 const validator = require('express-validator');
 const http = require('http');
 const Cookies = require('cookies');
@@ -30,11 +30,14 @@ mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true
     console.error("Node=> Error Connecting Server => " + err);
   });
 
+
+// Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 app.use(
-  session({ secret: "top secret message", resave: false, saveUninitialized: false, store: store })
-);
+  expSession({secret: 'Max', saveUninitialized: false, resave: false})
+  );
 // app.set('views-engine', 'ejs');
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -45,6 +48,7 @@ app.use((req, res, next) => {
 
 
 
+// Route Middlewares
 app.use('/api/user', UserRouter);
 app.use('/api/item', ItemRouter);
 app.use('/api/auth', AuthRouter);

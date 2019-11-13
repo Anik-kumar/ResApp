@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Joi = require('joi');
 const userService = require('../services/UserServices');
 
 
@@ -36,6 +37,53 @@ router.post('/findone', async (req, res, next) => {
   res.status(200);
 
 });
+
+
+router.post('/reg', async (req, res, next) =>{
+  let result;
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let id = req.body._id;
+  let email = req.body.email;
+  let password = req.body.password;
+  let dob = req.body.dob;
+
+  const joiSchema = Joi.object().keys({
+    _id: Joi.any(),
+    firstName: Joi.string().trim().min(3).max(18).required(),
+    lastName: Joi.string().trim().min(3).max(18).required(),
+    email: Joi.string().trim().min(6).email().required(),
+    password: Joi.string().trim().min(4).required(),
+    dob: Joi.string().trim().min(6).required(),
+  });
+
+  let isFalse = false;
+  Joi.validate(req.body, joiSchema, (err, result) => {
+    if(err){
+      console.error(err);
+      isFalse = true;
+    }
+  });
+
+  try{
+
+    if(!isFalse){
+      result = await userService.registerUser(id, firstName, lastName, email, password, dob);
+
+      if(!result.success){
+        console.error('UserRouter => User Registration Error. ', result);
+      }
+    }
+
+  }catch(e){
+    console.log('Exception error in /api/user/reg Api. ' + e);
+    next(e);
+  }
+
+  res.status(200).send(result);
+
+});
+
 
 
 module.exports = router;

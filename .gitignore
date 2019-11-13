@@ -7,6 +7,7 @@ yarn-error.log*
 *.txt
 *.zip
 *.rar
+.vscode
 
 # Runtime data
 pids

@@ -10,6 +10,13 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getCookies();
+  }
+
+
+  getCookies() {
+    let cookies = document.cookie;
+    console.log('Cookies =>' , cookies);
   }
 
 }
