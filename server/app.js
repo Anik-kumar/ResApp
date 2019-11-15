@@ -17,6 +17,7 @@ const UserRouter = require('./routes/UserRouter');
 const ItemRouter = require('./routes/ItemRouter');
 const AuthRouter = require('./routes/AuthRouter');
 const app = express();
+
 const store = new mongodbSession({
   uri: 'mongodb://localhost:27017/restaurant',
   collections: 'sessions'
@@ -33,10 +34,10 @@ mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true
 
 // Middlewares
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(
-  expSession({secret: 'Max', saveUninitialized: false, resave: false})
+  expSession({ secret: 'randomstring', saveUninitialized: false, resave: false})
   );
 // app.set('views-engine', 'ejs');
 app.use((req, res, next) => {
@@ -173,7 +174,7 @@ app.post('/api/reg/user', (req, res) => {
 });*/
 
 
-app.get('/api/get/users', (req, res) => {
+/* app.get('/api/get/users', (req, res) => {
   User.find()
     .then(documents => {
       // console.log(" Users are retrived ", documents);
@@ -182,7 +183,7 @@ app.get('/api/get/users', (req, res) => {
         users: documents
       })
     });
-});
+}); */
 
 
 app.get('/home', (req, res) => {

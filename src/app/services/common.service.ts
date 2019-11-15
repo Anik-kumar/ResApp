@@ -3,16 +3,16 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegistrationModel } from '../registration/registration.model';
 import { UserApiService } from './user-api.service';
+// = '../../../server/controllers/AuthController.js';
+declare var authController: any ;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   users: RegistrationModel[] = [];
-  // const jwt = require('jsonwebtoken');
 
   constructor(private http: HttpClient, private userApiService: UserApiService) { }
-
 
   isUserValid(userAuth: string, passAuth: string) {
     const result = Observable.create((observer: any) => {
@@ -47,13 +47,6 @@ export class CommonService {
     .set('user', username)
     .set('pass', password);
 
-    // const result = Observable.create( (observer: any) => {
-    //   let token: string;
-    //   this.userApiService.getToken(user).subscribe(data => {
-    //     console.log('Data => ' , data);
-    //   });
-    // });
-
     var data;
 
     try{
@@ -63,13 +56,14 @@ export class CommonService {
           console.log('Token => ', resp.token);
           data = resp.token;
           console.log('Token 2 => ', data);
-          const path = 'path=/;';
-          const expires = 'expires=' + ((new Date()).getTime() + (1000*60*2)) ;
-          document.cookie = 'Token=' + data + ';' + expires + ';' + path;
-          document.cookie = 'Username=' + username + ';' + expires + ';' + path;
-          document.cookie = 'Password=' + password + ';' + expires + ';' + path;
+          // const path = 'path=/;';
+          // const expires = 'expires=' + ((new Date()).getTime() + (1000*60*2)) ;
+          // document.cookie = 'Token=' + data + ';' + expires + ';' + path;
+          // document.cookie = 'Username=' + username + ';' + expires + ';' + path;
+          // document.cookie = 'Password=' + password + ';' + expires + ';' + path;
 
-          console.log('Cookies =>' , document.cookie);
+          console.log('CommonService => Cookies =>' , document.cookie);
+
           // console.log();
           // document.cookie = cookieStr;
           return data;
@@ -79,6 +73,17 @@ export class CommonService {
       console.log('CommonService gettoken error => ', e);
     }
     // next(data);
+
+  }
+
+  async checkCookiesOnLogin(){
+    let hasCookie = await this.http.get('http://localhost:3000/api/auth/checkcookie');
+    // let hasCookie = document.cookie;
+    if(hasCookie){
+      console.log('CommonService => Cookie Exists', hasCookie);
+    }else{
+      console.log('CommonService => Cookie does not exists');
+    }
 
   }
 

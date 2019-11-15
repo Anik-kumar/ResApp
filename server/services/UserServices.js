@@ -8,8 +8,6 @@ module.exports = class UserServices {
 
   constructor() { }
 
-
-
 /*
 *
 * @return { Promise<{result: *, success: *}>}
@@ -87,6 +85,5 @@ module.exports = class UserServices {
     }
 
   }
-
 
 }

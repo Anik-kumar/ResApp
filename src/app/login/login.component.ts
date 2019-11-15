@@ -13,10 +13,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private cmn: CommonService, private router: Router, private http: HttpClient) { }
   private token;
+  private isLoggedIn;
 
   // validator = require('express-validator');
 
   ngOnInit() {
+    this.isLoggedIn = this.cmn.checkCookiesOnLogin();
   }
 
   onLogin(event: NgForm) {

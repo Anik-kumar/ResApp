@@ -1,11 +1,23 @@
 
-exports.postLogin = (req, res, next) => {
-  // res.render('')
-  res.send('AAAA');
-  console.log("Post login")
-};
+module.exports = class AuthController{
 
 
-exports.getLogin = (req, res, next) => {
-  console.log("Get login");
+  static hasCookie() {
+
+    const dirtyCookies = document.cookie;
+    const clearedCookies = dirtyCookies.split(';');
+
+    const tempCookies = [];
+
+    clearedCookies.forEach(cookie => {
+      tempCookies.push(cookie.split('='));
+    });
+
+    const cookies = tempCookies.filter(cookie => {
+      console.log(cookie);
+    });
+
+    return document.cookie;
+  }
+
 }
