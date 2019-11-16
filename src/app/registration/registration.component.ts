@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {RegistrationService} from '../services/registration.service';
+import { NgForm } from '@angular/forms';
+import { RegistrationService } from '../services/registration.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   // @ts-ignore
   days = Array(31).fill().map((x, i) => i);
   // @ts-ignore
-  years = Array(100).fill().map( (x, i) => i);
+  years = Array(100).fill().map((x, i) => i);
   years2 = 2018;
 
   constructor(private regService: RegistrationService) { }
@@ -25,8 +25,8 @@ export class RegistrationComponent implements OnInit {
   onRegister(event: NgForm) {
     // console.log(event);
 
-    if ( event.invalid ) {
-      console.log("Form is Invalid");
+    if (event.invalid) {
+      console.log('Form is Invalid');
     } else {
       const firstName = event.value.firstName;
       const lastName = event.value.lastName;
@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit {
       // console.log(firstName, lastName, email, password, password2, dobMonth, dobDay, dobYear);
 
       this.regService.registerNewUser(firstName, lastName, email, password, password2, dobDay, dobMonth, dobYear);
-      // this.regService.formReset();
+      event.resetForm();
     }
 
   }

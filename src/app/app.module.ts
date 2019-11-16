@@ -17,7 +17,7 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {RegistrationService} from './services/registration.service';
-import {CommonService} from "./services/common.service";
+import {CommonService} from './services/common.service';
 // components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 import { MenuService } from '../menu.service';
 
@@ -15,7 +15,7 @@ export class AddItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddItem(form: NgForm) {
+  async onAddItem(form: NgForm) {
     // event.preventDefault();
 
     /*const name = event.target.querySelector('#itemName').value;
@@ -24,7 +24,7 @@ export class AddItemComponent implements OnInit {
     const link = event.target.querySelector('#itemLink').value;*/
     if (form.invalid) {
       console.log('Form is Invalid');
-      return ;
+      return;
     } else {
       // console.log('Carry On');
       const name = form.value.name;
@@ -33,13 +33,13 @@ export class AddItemComponent implements OnInit {
       const price = form.value.price;
       const link = form.value.link;
 
-      this.menuService.addMenuItem(name, type, quantity, price, link);
-      console.log(name, type, quantity, price, link);
-      console.log('Angular => New Item is Added to Database');
-      form.resetForm();
+      this.menuService.addMenuItem(name, type, quantity, price, link)
+        .subscribe(result => {
+          console.log('Result => ', result);
+          console.log('Angular => New Item is Added to Database');
+          form.resetForm();
+        });
     }
-
-
 
   }
 

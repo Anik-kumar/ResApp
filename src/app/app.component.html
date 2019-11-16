@@ -1,8 +1,68 @@
-<app-header></app-header>
-<app-navbar></app-navbar>
-<!--<app-menu-list></app-menu-list>-->
-<br><br>
+<mat-sidenav-container>
+  <!-- <mat-sidenav #sidenav mode="side"> -->
+  <!-- <app-navbar></app-navbar> -->
+  <!-- </mat-sidenav> -->
 
-<router-outlet></router-outlet>
+  <mat-sidenav #sidenav mode="side" opended>
+    <mat-nav-list>
 
-<app-footer></app-footer>
+      <a mat-button href="/">Home</a>
+      <a mat-button routerLink="/add/item">Add Item</a>
+      <a mat-button routerLink="/checkout">Checkout</a>
+
+      <a mat-button routerLink="/about">About</a>
+      <a mat-button routerLink="/contact">Contact</a>
+      <a mat-button routerLink="/reg">Registration</a>
+      <a mat-button routerLink="/login">Login</a>
+      <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar class="navbar">
+      <div class="align-div">
+        <div>
+          <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+          </button>
+        </div>
+        <div>
+          <h1>Website Name</h1>
+        </div>
+      </div>
+
+      <!-- <span class="example-fill-remaining-space"></span> -->
+      <div>
+
+        <a mat-button href="">Home</a>
+        <!-- <button mat-button routerLink="/menu">Menu</button>-->
+        <!-- <a mat-button routerLink="/menu">Menu</a> -->
+        <!--      <button mat-button [matMenuTriggerFor]="menu" (click)="loadMenu()" [routerLink]="'/menu'">Menu</button>-->
+        <!--      <mat -menu #menu="matMenu">-->
+        <!--        <a mat-menu-item>Bangladeshi Food</a>-->
+        <!--        <a mat-menu-item>European Food</a>-->
+        <!--        <a mat-menu-item>Beverage</a>-->
+        <!-- </mat-menu> -->
+
+        <a mat-button routerLink="/menu">Menu List</a>
+        <a mat-button routerLink="/add/item">Add Item</a>
+        <a mat-button routerLink="/checkout">Checkout</a>
+        <a mat-button routerLink="/about">About</a>
+        <a mat-button routerLink="/contact">Contact</a>
+        <a mat-button routerLink="/reg">Registration</a>
+        <a mat-button routerLink="/login">Login</a>
+        <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+      </div>
+
+    </mat-toolbar>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer></app-footer>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

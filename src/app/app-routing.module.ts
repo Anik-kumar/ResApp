@@ -17,7 +17,7 @@ import { AddItemComponent } from './menu/add-item/add-item.component';
 
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'reg', component: RegistrationComponent },
@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'about', component: AboutUsComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'menu', component: MenuListComponent },
+  { path: '', component: LandingComponent }
   // { path: 'about', component: AboutUsComponent }
 ];
 

@@ -1,39 +1,3 @@
-<!--<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Add Item</title>
-</head>
-<body>-->
-
-
-
-<!--<form (submit)="onAddItem($event)">
-  <table>
-    <tr>
-      <th>Name</th>
-      <td> <input type="text" id="itemName" placeholder="Item Name" required="true"> </td>
-    </tr>
-    <tr>
-      <th>Type</th>
-      <td> <input type="text" id="itemType" placeholder="Item Type" required="true"> </td>
-    </tr>
-    <tr>
-      <th>Price</th>
-      <td> <input type="text" id="itemPrice" placeholder="Item Price" required="true"> </td>
-    </tr>
-    <tr>
-      <th>Image Link</th>
-      <td> <input type="text" id="itemLink" placeholder="Item Link" required="true"> </td>
-    </tr>
-
-  </table>
-  <input type="submit" id="" value="ADD">
-</form>-->
-
 <div id="addItem">
   <h1> Add New Item</h1>
   <mat-card>
@@ -50,7 +14,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Quantity</mat-label>
-        <input type="text" matInput id="itemQuantity" name="quantity" ngModel required minlength="3" #quantity="ngModel">
+        <input type="text" matInput id="itemQuantity" name="quantity" ngModel required minlength="3"
+          #quantity="ngModel">
         <mat-error *ngIf="quantity.invalid">Please Enter Quantity of Item</mat-error>
       </mat-form-field>
       <mat-form-field>

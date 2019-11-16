@@ -1,38 +1,57 @@
+<!-- <mat-sidenav #sidenav mode="side">
+  <mat-nav-list>
 
-<mat-toolbar>
-  <!--<button mat-icon-button>
-    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-  </button>-->
+    <a mat-button href="/">Home</a>
+    <a mat-button routerLink="/add/item">Add Item</a>
+    <a mat-button routerLink="/checkout">Checkout</a>
+    <a mat-button routerLink="/about">About</a>
+    <a mat-button routerLink="/contact">Contact</a>
+    <a mat-button routerLink="/reg">Registration</a>
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button [routerLink]="'/accounts'"> Accounts </a>
 
-  <div id="logo-div">
-    <img mat-card-md-image src="./../../assets/coffee-cups-1280x800-cookies-coffee-beans-4k-6391.jpg" alt="">
+  </mat-nav-list>
+</mat-sidenav> -->
+
+
+<mat-toolbar class="navbar">
+
+  <div>
+    <div>
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <h1>Website Name</h1>
+    </div>
   </div>
 
-  <h1>Website Name</h1>
-  <span class="example-fill-remaining-space"></span>
-    <div>
-      <a mat-button href="">Home</a>
-<!--      <button mat-button routerLink="/menu">Menu</button>-->
-      <a mat-button routerLink="/menu">Menu</a>
-<!--      <button mat-button [matMenuTriggerFor]="menu" (click)="loadMenu()" [routerLink]="'/menu'">Menu</button>-->
-<!--      <mat -menu #menu="matMenu">-->
-<!--        <a mat-menu-item>Bangladeshi Food</a>-->
-<!--        <a mat-menu-item>European Food</a>-->
-<!--        <a mat-menu-item>Beverage</a>-->
-<!--      </mat-menu>-->
+  <!-- <span class="example-fill-remaining-space"></span> -->
+  <div>
 
-      <a mat-button routerLink="/add/item">Add Item</a>
-      <a mat-button routerLink="/checkout">Checkout</a>
-<!--      <a mat-button href=""></a>-->
-<!--      <a mat-button href=""></a>-->
-<!--      <a mat-button href=""></a>-->
-      <a mat-button routerLink="/about">About</a>
-      <a mat-button routerLink="/contact">Contact</a>
-      <a mat-button routerLink="/reg">Registration</a>
-      <a mat-button routerLink="/login">Login</a>
-      <a mat-button [routerLink]="'/accounts'"> Accounts </a>
-    </div>
-  <!--<span class="example-fill-remaining-space"></span>-->
+    <a mat-button href="">Home</a>
+    <!-- <button mat-button routerLink="/menu">Menu</button>-->
+    <!-- <a mat-button routerLink="/menu">Menu</a> -->
+    <!--      <button mat-button [matMenuTriggerFor]="menu" (click)="loadMenu()" [routerLink]="'/menu'">Menu</button>-->
+    <!--      <mat -menu #menu="matMenu">-->
+    <!--        <a mat-menu-item>Bangladeshi Food</a>-->
+    <!--        <a mat-menu-item>European Food</a>-->
+    <!--        <a mat-menu-item>Beverage</a>-->
+    <!-- </mat-menu> -->
+
+    <a mat-button routerLink="/add/item">Add Item</a>
+    <a mat-button routerLink="/checkout">Checkout</a>
+    <!--      <a mat-button href=""></a>-->
+    <!--      <a mat-button href=""></a>-->
+    <!--      <a mat-button href=""></a>-->
+    <a mat-button routerLink="/about">About</a>
+    <a mat-button routerLink="/contact">Contact</a>
+    <a mat-button routerLink="/reg">Registration</a>
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+  </div>
+
 </mat-toolbar>
 
 

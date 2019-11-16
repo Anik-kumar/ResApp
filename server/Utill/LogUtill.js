@@ -1,5 +1,5 @@
 
-class LogUtill {
+module.exports = class LogUtill {
   static getErrorText(e) {
     var errorText = "";
     if (e == null || e == undefined) {
