@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { isNull, isNil } from 'lodash';
 import { RegistrationModel } from '../registration/registration.model';
 import { UserApiService } from './user-api.service';
 // = '../../../server/controllers/AuthController.js';
@@ -13,6 +14,19 @@ export class CommonService {
   users: RegistrationModel[] = [];
 
   constructor(private http: HttpClient, private userApiService: UserApiService) { }
+
+  checkUserLogin(username: string, password: string) {
+    const result = Observable.create((observer: any) => {
+      let found = {};
+      this.userApiService.getUser(username, password).subscribe(user => {
+        if (!isNil(user)) {
+          found = user;
+        }
+        observer.next(found);
+      });
+    });
+    return result;
+  }
 
   isUserValid(userAuth: string, passAuth: string) {
     const result = Observable.create((observer: any) => {
