@@ -16,8 +16,12 @@ import {
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 import {RegistrationService} from './services/registration.service';
-import {CommonService} from "./services/common.service";
+import {CommonService} from './services/common.service';
+import {AuthService} from './services/auth.service';
+import { httpInterceptorProviders } from './interceptors/http-interceptor-providers';
+
 // components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -56,6 +60,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
@@ -69,7 +74,12 @@ import { HomeComponent } from './home/home.component';
     MatExpansionModule,
     MatSelectModule
   ],
-  providers: [RegistrationService, CommonService],
+  providers: [
+    httpInterceptorProviders,
+    AuthService,
+    RegistrationService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,20 @@ class AuthService{
   static async getToken(user, pass) {
     var user = { user, pass };
     const token = jwt.sign({user}, key);
-    
+
+    console.log("Token Created => " , token);
+    return token;
+  }
+
+  static async getTokenWithExpireTime(user, pass, time) {
+    if (time == null || time == undefined) {
+      time = 300;
+    }
+    var user = { user, pass };
+    const token = jwt.sign({user}, key, {
+      expiresIn: time // in sec.
+    });
+
     console.log("Token Created => " , token);
     return token;
   }

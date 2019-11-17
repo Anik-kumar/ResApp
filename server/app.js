@@ -46,12 +46,15 @@ app.use(expSession({
   activeDuration: 5 * 60 * 1000,
   httpOnly: true,
   secure: false,
-  cookie: { maxAge: 60000 }
-
+  cookie: {
+    expires: new Date(Date.now() + 120000),
+    maxAge: 120000
+  }
 }))
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
+  //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, UPDATE, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Credentials', true);

@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'add/item', component: AddItemComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'menu', component: MenuListComponent },
+  { path: 'menu', component: MenuListComponent, canActivate: [AuthGuard] },
   // { path: 'about', component: AboutUsComponent }
 ];
 

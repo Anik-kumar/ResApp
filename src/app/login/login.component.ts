@@ -51,8 +51,11 @@ export class LoginComponent implements OnInit {
       this.cmn.checkUserLogin(user, pass).subscribe(result => {
         if (result) {
           console.log('User Found', result);
+
+          this.router.navigate(['/home']);
         } else {
           console.log('User not Found');
+          this.router.navigate(['/login']);
           // window.location.href = 'http://localhost:4200/login';
         }
       });

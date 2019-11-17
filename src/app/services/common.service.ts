@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { isNull, isNil } from 'lodash';
-import { RegistrationModel } from '../registration/registration.model';
+import { UserModel } from '../registration/user.model';
 import { UserApiService } from './user-api.service';
+import { AuthService } from './auth.service';
 // = '../../../server/controllers/AuthController.js';
 declare var authController: any ;
 
@@ -11,16 +12,29 @@ declare var authController: any ;
   providedIn: 'root'
 })
 export class CommonService {
-  users: RegistrationModel[] = [];
+  activeUser: {_id: string, firstName: string, lastName: string, email: string, token: string, dob: string; };
 
-  constructor(private http: HttpClient, private userApiService: UserApiService) { }
+  constructor(private http: HttpClient,
+              private userApiService: UserApiService,
+              private authService: AuthService) { }
 
   checkUserLogin(username: string, password: string) {
     const result = Observable.create((observer: any) => {
       let found = {};
       this.userApiService.getUser(username, password).subscribe(user => {
+        console.log('Response: ', user);
         if (!isNil(user)) {
+          this.authService.setLoggedInUser(user);
+          this.authService.setLoggedInStatus(true);
           found = user;
+          this.activeUser = {
+            _id: user._id,
+            dob: user.dob,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            token: null
+          };
         }
         observer.next(found);
       });

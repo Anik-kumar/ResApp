@@ -15,9 +15,9 @@ export class MenuService {
   constructor(public http: HttpClient) { }
 
   getMenuItems() {
-    this.http.get<{ message: string, items: any}>('http://localhost:3000/api/item/foods')
+    this.http.get<any[]>('http://localhost:3000/api/item/foods')
       .pipe(map((postItems) => {
-        return postItems.items.map(item => {
+        return postItems.map(item => {
           return {
             name: item.name,
             type: item.type,
