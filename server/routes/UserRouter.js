@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 const userService = require('../services/UserServices');
+const LogUtill = require('../Utill/LogUtill');
 
 
 router.get('/all', async function (req, res, next) {
@@ -35,7 +36,7 @@ router.post('/findone', async (req, res, next) => {
 
   let results;
 
-  try{
+  try {
     let result = await userService.findUserByEmailAndPassword(req.body.email, req.body.password);
     if (result.success) {
       results = result.result;
@@ -51,7 +52,7 @@ router.post('/findone', async (req, res, next) => {
 });
 
 
-router.post('/reg', async (req, res, next) =>{
+router.post('/reg', async (req, res, next) => {
   let result;
   let firstName = req.body.firstName;
   let lastName = req.body.lastName;
@@ -71,23 +72,23 @@ router.post('/reg', async (req, res, next) =>{
 
   let isFalse = false;
   Joi.validate(req.body, joiSchema, (err, result) => {
-    if(err){
+    if (err) {
       console.error(err);
       isFalse = true;
     }
   });
 
-  try{
+  try {
 
-    if(!isFalse){
+    if (!isFalse) {
       result = await userService.registerUser(id, firstName, lastName, email, password, dob);
 
-      if(!result.success){
+      if (!result.success) {
         console.error('UserRouter => User Registration Error. ', result);
       }
     }
 
-  }catch(e){
+  } catch (e) {
     console.log('Exception error in /api/user/reg Api. ' + e);
     next(e);
   }

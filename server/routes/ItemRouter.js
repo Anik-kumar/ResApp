@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 const itemService = require('./../services/ItemServices');
 const Cookies = require('cookies');
+const LogUtill = require('../Utill/LogUtill');
 
 
-router.get('/foods', async function (req, res, next){
+router.get('/foods', async function (req, res, next) {
   let foods;
 
-  try{
+  try {
     let results = await itemService.getAllFoods();
-    if(results.success) {
+    if (results.success) {
       foods = results.result;
     }
   } catch (e) {
@@ -20,27 +21,17 @@ router.get('/foods', async function (req, res, next){
   res.status(200);
   res.send(foods);
 
-  /*Item.find()
-    .then(documents => {
-      res.status(201).json({
-        message: "Data is Retrived",
-        items: documents
-      });
-    });*/
-
 });
 
 
 router.post('/add', async function (req, res) {
-  // res.end('Hello');
-  // res.render("addItem.ejs");
-  // console.log("A");
 
   let results;
 
   try {
     let result = await itemService.saveNewItem(req.body);
-    if(result.success){
+    console.log('Item Added');
+    if (result.success) {
       results = result.result;
     }
   } catch (e) {
@@ -57,9 +48,9 @@ router.delete('/delete/:id', async function (req, res) {
   console.log(req.params.id);
   let result;
 
-  try{
+  try {
     result = await itemService.deleteItem(req.params.id);
-    if(!result) {
+    if (!result) {
       console.error("Delete Error.");
     }
   } catch (e) {

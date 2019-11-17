@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { MenuModel } from './menu.model';
@@ -24,25 +24,27 @@ export class MenuService {
             quantity: item.quantity,
             price: item.price,
             img: item.img,
-            id: item._id
+            _id: item._id
           };
         });
       }))
       .subscribe(items => {
         this.menuItems = items;
         this.updatedMenuItems.next([...this.menuItems]);
-    });
+      });
   }
 
-  addMenuItem(name: string, type: string, quantity: string, price: number, link: string) {
+  addMenuItem(name: string, type: string, quantity: string, price: number, link: string): Observable<any> {
 
-    const item: MenuModel = { id: null, name: name, type: type, quantity: quantity, price: price, img: link };
-    this.http.post<{message: string, id: string}>('http://localhost:3000/api/item/add', item)
-      .subscribe(resData => {
-        item.id = resData.id;
-        this.menuItems.push(item);
-        this.updatedMenuItems.next([...this.menuItems]);
-      });
+    const item: MenuModel = { _id: null, name: name, type: type, quantity: quantity, price: price, img: link };
+
+    return this.http.post<{ message: string, id: string }>('http://localhost:3000/api/item/add', item);
+
+    // .subscribe(resData => {
+    //   item._id = resData.id;
+    //   this.menuItems.push(item);
+    //   this.updatedMenuItems.next([...this.menuItems]);
+    // });
   }
 
   getItemUpdateListener() {
@@ -53,7 +55,7 @@ export class MenuService {
   deleteItem(itemId: string) {
     this.http.delete('http://localhost:3000/api/item/delete/' + itemId)
       .subscribe(() => {
-        const newUpdatedItems = this.menuItems.filter(item => item.id !== itemId);
+        const newUpdatedItems = this.menuItems.filter(item => item._id !== itemId);
         this.menuItems = newUpdatedItems;
         this.updatedMenuItems.next([...this.menuItems]);
       });

@@ -4,14 +4,10 @@ mat-toolbar {
   background-img: './../../assets/coffee-cups-1280x800-cookies-coffee-beans-4k-6391.jpg';
 }
 
-mat-sidenav-content{
-  height: 90vh;
+.navbar {
+  justify-content: space-between;
 }
 
-#logo-div img {
-  width: 220px;
-  /*height: 300px;*/
-}
 
 .example-fill-remaining-space{
   flex: 1 1 auto;

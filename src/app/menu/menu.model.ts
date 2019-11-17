@@ -1,5 +1,5 @@
 export interface MenuModel {
-  id: string;
+  _id: string;
   name: string;
   type: string;
   quantity: string;

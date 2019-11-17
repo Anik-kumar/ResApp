@@ -1,6 +1,7 @@
 
 const Item = require('./../models/item');
 const Joi = require('joi');
+const LogUtill = require('../Utill/LogUtill');
 
 module.exports = class ItemServices {
 
@@ -28,20 +29,20 @@ module.exports = class ItemServices {
 
   static async saveNewItem(params) {
 
-    let result, success= true;
+    let result, success = true;
     let item;
 
     const joiItem = Joi.object().keys({
-      id: Joi.any(),
+      _id: Joi.any(),
       name: Joi.string().trim().min(3).max(15).required(),
       type: Joi.string().trim().min(3).max(15).required(),
-      quantity : Joi.string().trim().min(3).max(15).required(),
-      price : Joi.number().greater(0).min(15).required(),
-      img : Joi.string().trim().min(7).required()
+      quantity: Joi.string().trim().min(3).max(15).required(),
+      price: Joi.number().greater(0).min(15).required(),
+      img: Joi.string().trim().min(7).required()
     });
 
     Joi.validate(params, joiItem, (err, result) => {
-      if(err) {
+      if (err) {
         console.error("Joi Validation Error => " + err);
 
       } else {
@@ -84,7 +85,7 @@ module.exports = class ItemServices {
     let result;
 
     try {
-      result = await Item.deleteOne({_id: id}).exec();
+      result = await Item.deleteOne({ _id: id }).exec();
     } catch (e) {
       console.error("Exception error in deleteOne() from ItemService. " + LogUtill.getErrorText(e));
       next(e);

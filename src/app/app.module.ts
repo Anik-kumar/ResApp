@@ -21,7 +21,6 @@ import {RegistrationService} from './services/registration.service';
 import {CommonService} from './services/common.service';
 import {AuthService} from './services/auth.service';
 import { httpInterceptorProviders } from './interceptors/http-interceptor-providers';
-
 // components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
