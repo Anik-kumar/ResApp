@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const itemService = require('./../services/ItemServices');
-const Cookies = require('cookies');
+// const Cookies = require('cookies');
 const LogUtill = require('../Utill/LogUtill');
 
 
@@ -24,18 +24,20 @@ router.get('/foods', async function (req, res, next) {
 });
 
 
-router.post('/add', async function (req, res) {
+router.post('/add', async function (req, res, next) {
 
   let results;
 
   try {
     let result = await itemService.saveNewItem(req.body);
-    console.log('Item Added');
+    // console.log(req.body);
     if (result.success) {
+      console.log('Item Added');
       results = result.result;
     }
   } catch (e) {
     console.error("Exception error in /api/item/add. " + e);
+    next(e);
   }
 
   res.send(results);
@@ -44,12 +46,13 @@ router.post('/add', async function (req, res) {
 });
 
 
-router.delete('/delete/:id', async function (req, res) {
+router.delete('/delete/:id', async function (req, res, next) {
   console.log(req.params.id);
   let result;
 
   try {
     result = await itemService.deleteItem(req.params.id);
+    console.log('Item Deleted');
     if (!result) {
       console.error("Delete Error.");
     }

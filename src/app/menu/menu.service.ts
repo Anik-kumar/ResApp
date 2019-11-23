@@ -34,11 +34,11 @@ export class MenuService {
       });
   }
 
-  addMenuItem(name: string, type: string, quantity: string, price: number, link: string): Observable<any> {
+  addMenuItem(uname: string, utype: string, uquantity: string, uprice: number, link: string): Observable<any> {
 
-    const item: MenuModel = { _id: null, name: name, type: type, quantity: quantity, price: price, img: link };
+    const item: MenuModel = { name: uname, type: utype, quantity: uquantity, price: uprice, img: link };
 
-    return this.http.post<{ message: string, id: string }>('http://localhost:3000/api/item/add', item);
+    return this.http.post<any>('http://localhost:3000/api/item/add', item);
 
     // .subscribe(resData => {
     //   item._id = resData.id;

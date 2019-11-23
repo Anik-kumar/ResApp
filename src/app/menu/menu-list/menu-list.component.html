@@ -1,6 +1,6 @@
 
 <div id="menu-div" *ngIf="items.length > 0">
-  <div id="inner-div" layout="row" layout-align="center center" minlength="500px">
+  <div id="inner-div" layout="row" layout-align="center center">
     <mat-card *ngFor="let item of items">
       <img mat-card-md-image src="{{item.img}}" alt="Image">
       <mat-card-title>{{item.name}}</mat-card-title>
@@ -10,7 +10,7 @@
       <mat-action-row>
         <button mat-button color="accent">Add to Card</button>
         <button mat-button color="primary">Back</button>
-        <button mat-button color="warn" (click)="onDelete(item.id)">Delete Item</button>
+        <button mat-button color="warn" (click)="onDelete(item._id)">Delete Item</button>
       </mat-action-row>
     </mat-card>
   </div>

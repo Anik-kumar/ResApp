@@ -1,22 +1,25 @@
 #menu-div{
   text-align: center;
   width: 60%;
-
+  border: solid 1px black;
+  margin: auto;
 }
 
 #menu-div mat-card {
-  background-color: lightblue;
+  background-color: #BFBFBF;
 }
 
-#menu-div:hover {
-
+#menu-div mat-card:hover {
+  background-color: #CFCFCF;
+  color: blue;
 }
 
 #inner-div {
   margin: auto;
-
+  border: solid 1px red;
 }
 
 mat-card {
   margin-bottom: 5px;
+  border: solid 1px green;
 }

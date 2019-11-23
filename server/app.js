@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const expSession = require('express-session');
 const mongodbSession = require('connect-mongodb-session')(expSession);
-const validator = require('express-validator');
+// const validator = require('express-validator');
 const http = require('http');
-const Cookies = require('cookies');
-const nodeCookie = require('node-cookie');
+// const Cookies = require('cookies');
+// const nodeCookie = require('node-cookie');
 const cookieParser = require('cookie-parser');
 // const ejs = require('ejs');
 
@@ -187,7 +187,7 @@ app.post('/api/reg/user', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-  var cookies = Cookies(req, res);
+  // var cookies = Cookies(req, res);
 
   // nodeCookie.create(res, "admin", "data data", "veryverylongsecret");
 
@@ -197,13 +197,13 @@ app.get('/home', (req, res) => {
 
   // console.log(nodeCookie.get(res, 'admin'));
 
-  let options = {
-    maxAge: 1000 * 60 * 60 * 2,
-    httpOnly: true,
-    signed: true
-  };
-
-  res.cookie('Admin', 'Admin cookie data', options);
+  // let options = {
+  //   maxAge: 1000 * 60 * 60 * 2,
+  //   httpOnly: true,
+  //   signed: true
+  // };
+  //
+  // res.cookie('Admin', 'Admin cookie data', options);
 
   console.log(req.cookies);
 

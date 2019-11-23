@@ -15,7 +15,7 @@ module.exports = class ItemServices {
       result = await Item.find().exec();
     } catch (e) {
       console.error("Exception error in getAllFoods() from ItemService. " + LogUtill.getErrorText(e));
-      next(e);
+
     }
 
     return {
@@ -29,11 +29,11 @@ module.exports = class ItemServices {
 
   static async saveNewItem(params) {
 
-    let result, success = true;
-    let item;
+    let results, item, success = true;
+    // var item;
 
     const joiItem = Joi.object().keys({
-      _id: Joi.any(),
+
       name: Joi.string().trim().min(3).max(15).required(),
       type: Joi.string().trim().min(3).max(15).required(),
       quantity: Joi.string().trim().min(3).max(15).required(),
@@ -41,7 +41,7 @@ module.exports = class ItemServices {
       img: Joi.string().trim().min(7).required()
     });
 
-    Joi.validate(params, joiItem, (err, result) => {
+    Joi.validate(params, joiItem, async (err, result) => {
       if (err) {
         console.error("Joi Validation Error => " + err);
 
@@ -54,6 +54,14 @@ module.exports = class ItemServices {
           img: params.img
         });
 
+
+        try {
+          results = await item.save();
+        } catch (e) {
+          console.error("Exception error in saveNewItem() from ItemService. " + LogUtill.getErrorText(e));
+
+        }
+
         /*item.save()
           .then(newItem => {
             console.log("Node => New Item Added to Database");
@@ -62,21 +70,15 @@ module.exports = class ItemServices {
               id: newItem._id
             });
           });*/
+
       }
     });
 
-    try {
-      result = await item.save().exec();
-    } catch (e) {
-      console.error("Exception error in saveNewItem() from ItemService. " + LogUtill.getErrorText(e));
-      next(e);
-    }
-
-
     return {
       success: success,
-      result: result
+      result: results
     }
+
 
   }
 
@@ -85,10 +87,11 @@ module.exports = class ItemServices {
     let result;
 
     try {
+      // console.log('ID -> ', id);
       result = await Item.deleteOne({ _id: id }).exec();
     } catch (e) {
       console.error("Exception error in deleteOne() from ItemService. " + LogUtill.getErrorText(e));
-      next(e);
+
     }
 
     return {
