@@ -26,9 +26,14 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       tap(
         event => {
-        if (event instanceof HttpResponse) {
-          this.authService.setAuthorizationToken(event.headers.get('x-auth-token'));
-        }
+          if (event instanceof HttpResponse) {
+            // x-auth-token
+            console.log('x-auth-token: ', event.headers.get('x-auth-token'));
+            console.log('headers: ', event.headers);
+            if (event.headers.get('x-auth-token') != null) {
+              this.authService.setAuthorizationToken(event.headers.get('x-auth-token'));
+            }
+          }
         },
         error => {
           console.log('Error in AuthInterceptor ', error);

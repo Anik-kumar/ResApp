@@ -34,6 +34,7 @@ export class AuthService {
 
   public setAuthorizationToken(token: string) {
     this.authToken = token;
+    console.log('--- set token : ', this.authToken);
   }
 
   public getLoggedInUser(): {_id: string, name: string, email: string, dob: string } {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { MenuService } from '../menu.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-item',
@@ -10,9 +11,11 @@ import { MenuService } from '../menu.service';
 })
 export class AddItemComponent implements OnInit {
 
-  constructor(private menuService: MenuService) { }
+  constructor(private authService: AuthService, private menuService: MenuService) { }
 
   ngOnInit() {
+    console.log('User: ', this.authService.getLoggedInUser());
+    console.log('Token: ', this.authService.getAuthorizationToken());
   }
 
   async onAddItem(form: NgForm) {
