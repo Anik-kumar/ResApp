@@ -77,8 +77,8 @@ export class CommonService {
 
     var data;
 
-    try{
-      this.http.get<any>('http://localhost:3000/api/auth/token', { params: user })
+    try {
+      this.http.get<any>('/api/auth/token', { params: user })
         .subscribe( (resp) => {
           // console.log('From CommonService 1 => ');
           console.log('Token => ', resp.token);
@@ -105,11 +105,11 @@ export class CommonService {
   }
 
   async checkCookiesOnLogin(){
-    let hasCookie = await this.http.get('http://localhost:3000/api/auth/checkcookie');
+    const hasCookie = await this.http.get('/api/auth/checkcookie');
     // let hasCookie = document.cookie;
-    if(hasCookie){
+    if (hasCookie) {
       console.log('CommonService => Cookie Exists', hasCookie);
-    }else{
+    } else {
       console.log('CommonService => Cookie does not exists');
     }
 

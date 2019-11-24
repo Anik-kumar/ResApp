@@ -23,7 +23,7 @@ export class RegistrationService {
       };
       // console.log(user);
       try {
-        this.http.post<{id: string}>('http://localhost:3000/api/user/reg', user)
+        this.http.post<{id: string}>('/api/user/reg', user)
           .subscribe(resData => {
             console.log('RegService => ', resData);
           });
