@@ -18,10 +18,10 @@ router.post('/login', async (req, res, next) => {
     if (result.success) {
       results = result.result;
       if (result.result != null ) {
-        let token = await authService.getTokenWithExpireTime(result.result.email, result.result.password, 60);
-        res.cookie('access_token', token, {
-          expires: new Date(Date.now() + 60000) // cookie will be removed after 8 hours
-        });
+        let token = await authService.getTokenWithExpireTime(result.result.email, result.result.password, 60*60);
+        // res.cookie('access_token', token, {
+        //   expires: new Date(Date.now() + 60000) // cookie will be removed after 8 hours
+        // });
 
         res.set({
           'X-Auth-Token': token

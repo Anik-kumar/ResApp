@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const key = "secretkey";
+const config = require('./config.js');
 
 
-class AuthService{
+class AuthService {
   constructor () { }
 
   static async postLogin (req, res, next)  {
@@ -18,7 +18,7 @@ class AuthService{
 
   static async getToken(user, pass) {
     var user = { user, pass };
-    const token = jwt.sign({user}, key);
+    const token = jwt.sign({user}, config.secret);
 
     console.log("Token Created => " , token);
     return token;
@@ -26,10 +26,10 @@ class AuthService{
 
   static async getTokenWithExpireTime(user, pass, time) {
     if (time == null || time == undefined) {
-      time = 300;
+      time = config.tokenExpiryTime;
     }
     var user = { user, pass };
-    const token = jwt.sign({user}, key, {
+    const token = jwt.sign({user}, config.secret, {
       expiresIn: time // in sec.
     });
 

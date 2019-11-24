@@ -10,6 +10,7 @@ const http = require('http');
 // const nodeCookie = require('node-cookie');
 const cookieParser = require('cookie-parser');
 const uuid = require('uuid/v4')
+let tokenService = require('./services/TokenService');
 
 const Item = require('./models/item');
 const User = require('./models/user');
@@ -67,8 +68,8 @@ app.use((req, res, next) => {
 
 
 // Route Middlewares
-app.use('/api/user', UserRouter);
-app.use('/api/item', ItemRouter);
+app.use('/api/user', tokenService.checkToken, UserRouter);
+app.use('/api/item', tokenService.checkToken, ItemRouter);
 app.use('/api/auth', AuthRouter);
 
 
