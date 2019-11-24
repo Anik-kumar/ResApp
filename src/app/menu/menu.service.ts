@@ -30,13 +30,14 @@ export class MenuService {
       }))
       .subscribe(items => {
         this.menuItems = items;
+        console.log(items);
         this.updatedMenuItems.next([...this.menuItems]);
       });
   }
 
   addMenuItem(uname: string, utype: string, uquantity: string, uprice: number, link: string): Observable<any> {
 
-    const item: MenuModel = { name: uname, type: utype, quantity: uquantity, price: uprice, img: link };
+    const item: MenuModel = { _id: null, name: uname, type: utype, quantity: uquantity, price: uprice, img: link };
 
     return this.http.post<any>('http://localhost:3000/api/item/add', item);
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { RegistrationModel } from '../registration/registration.model';
+import { UserModel } from '../registration/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class RegistrationService {
     // console.log( 'Reg Service =>' , fName, lName, email, pass, pass2, day, month, year);
 
     if (pass === pass2) {
-      const user: RegistrationModel = {
+      const user: UserModel = {
         _id: null,
         firstName: fName,
         lastName: lName,

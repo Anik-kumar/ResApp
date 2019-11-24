@@ -1,15 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const Joi = require('joi');
 const expSession = require('express-session');
 const mongodbSession = require('connect-mongodb-session')(expSession);
-
-// const validator = require('express-validator');
+const validator = require('express-validator');
 const http = require('http');
-// const Cookies = require('cookies');
-// const nodeCookie = require('node-cookie');
+const Cookies = require('cookies');
+const nodeCookie = require('node-cookie');
 const cookieParser = require('cookie-parser');
-const uuid = require('uuid/v4')
+// const ejs = require('ejs');
 
 const Item = require('./models/item');
 const User = require('./models/user');
@@ -36,31 +36,14 @@ mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-// app.use(
-//   expSession({ secret: 'randomstring', saveUninitialized: false, resave: false})
-// );
-
-app.use(expSession({
-  cookieName: 'session',
-  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
-  resave: false,
-  saveUninitialized: true,
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
-  httpOnly: true,
-  secure: false,
-  cookie: {
-    expires: new Date(Date.now() + 120000),
-    maxAge: 120000
-  }
-}))
-
+app.use(
+  expSession({ secret: 'randomstring', saveUninitialized: false, resave: false})
+);
+// app.set('views-engine', 'ejs');
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, UPDATE, PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
 
@@ -204,25 +187,17 @@ app.post('/api/reg/user', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-  // var cookies = Cookies(req, res);
+  var cookies = Cookies(req, res);
 
-  // nodeCookie.create(res, "admin", "data data", "veryverylongsecret");
+  let options = {
+    maxAge: 1000 * 60 * 60 * 2,
+    httpOnly: true,
+    signed: true
+  };
 
-  // var userId = 2;
+  res.cookie('Admin', 'Admin cookie data', options);
 
-  // cookies.set('userID', 2);
-
-  // console.log(nodeCookie.get(res, 'admin'));
-
-  // let options = {
-  //   maxAge: 1000 * 60 * 60 * 2,
-  //   httpOnly: true,
-  //   signed: true
-  // };
-  //
-  // res.cookie('Admin', 'Admin cookie data', options);
-
-  console.log(document.cookie);
+  console.log(req.cookies);
 
 });
 

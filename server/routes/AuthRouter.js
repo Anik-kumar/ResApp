@@ -3,8 +3,39 @@ const cookieParser = require('cookie-parser');
 const router = express.Router();
 // router.use(cookieParser());
 const authService = require('./../services/AuthService');
+const userService = require('../services/UserServices');
 const authController = require('./../controllers/AuthController');
+const LogUtill = require('../Utill/LogUtill');
 
+
+
+
+router.post('/login', async (req, res, next) => {
+  let results;
+
+  try{
+    let result = await userService.findUserByEmailAndPassword(req.body.email, req.body.password);
+    if (result.success) {
+      results = result.result;
+      if (result.result != null ) {
+        let token = await authService.getTokenWithExpireTime(result.result.email, result.result.password, 60);
+        res.cookie('access_token', token, {
+          expires: new Date(Date.now() + 60000) // cookie will be removed after 8 hours
+        });
+
+        res.set({
+          'X-Auth-Token': token
+        });
+      }
+    }
+  } catch (e) {
+    console.log("Exception error in /api/user/findone Api. " + LogUtill.getErrorText(e));
+    next(e);
+  }
+  res.send(results);
+  res.status(200);
+
+});
 
 router.get('/token', async (req, res, next) => {
   let results;
@@ -26,7 +57,7 @@ router.get('/token', async (req, res, next) => {
     // res.cookie('Password', pass, { maxAge: 60*10, httpOnly: true });
     // res.cookie('Token', token, { maxAge: 60*10, httpOnly: true });
     // console.log('Session is set');
-    
+
   } catch (e) {
     next(e);
     console.error(e);
@@ -46,7 +77,7 @@ router.get('/token', async (req, res, next) => {
 router.get('/checkcookie', (req, res) => {
   const user = req.signedCookies['Username'];
   const pass = req.signedCookies['Password']
-  
+
   if(user && pass){
     console.log("Cookies exists ", user, pass);
   }
@@ -56,7 +87,7 @@ router.get('/checkcookie', (req, res) => {
   console.log('cookies ' , req.signedCookies);
   console.log('session id ' , req.session.id);
   console.log('session uniqueid ' , req.session.uniqueId);
-  
+
   res.status(200).json({
     username: user,
     password: pass,

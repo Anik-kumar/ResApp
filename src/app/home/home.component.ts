@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { UserApiService } from '../services/user-api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private userApiService: UserApiService) { }
 
   ngOnInit() {
     this.getCookies();
+    console.log('User: ', this.authService.getLoggedInUser());
+    console.log('Token: ', this.authService.getAuthorizationToken());
+    this.userApiService.getUsers().subscribe(res => {
+      console.log('Result -> ', res);
+    });
   }
 
 

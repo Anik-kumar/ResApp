@@ -13,13 +13,16 @@ export class MenuListComponent implements OnInit {
 
   items: MenuModel[] = [];
   private itemSub: Subscription; /* subscription is used for updating items list */
+  isLoading = false;
 
   constructor(private menuService: MenuService) { }
 
 
 
   ngOnInit() {
+    this.isLoading = true;
     this.menuService.getMenuItems();
+    this.isLoading = false;
     this.itemSub = this.menuService.getItemUpdateListener()
       .subscribe((items: MenuModel[]) => {
         this.items = items;

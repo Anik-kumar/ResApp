@@ -16,7 +16,8 @@ export class UserApiService {
 
 
   getUser(username: string, password: string): Observable<any> {
-    return this.http.post<any>(ApiEndpoints.FIND_USER_API, { 'email': username, 'password': password });
+    // return this.http.post<any>(ApiEndpoints.FIND_USER_API, { 'email': username, 'password': password }, { withCredentials: true });
+    return this.http.post<any>(ApiEndpoints.LOGIN, { 'email': username, 'password': password }, { withCredentials: true });
   }
 
   // getToken(user): Observable<any> {

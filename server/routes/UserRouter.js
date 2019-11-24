@@ -21,7 +21,19 @@ router.get('/all', async function (req, res, next) {
 });
 
 
+router.get('/abc', (req, res) => {
+  console.log('Inside the homepage callback function')
+  console.log(req.sessionID)
+  res.send(`You hit home page!\n`)
+})
+
 router.post('/findone', async (req, res, next) => {
+  try {
+    console.log('>>> sessionID: ' + req.sessionID);
+  } catch (e) {
+    console.log(req);
+  }
+
   let results;
 
   try {

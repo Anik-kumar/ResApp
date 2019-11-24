@@ -1,5 +1,5 @@
-export interface RegistrationModel {
-  _id: string;
+export interface UserModel {
+  _id?: string;
   firstName: string;
   lastName: string;
   email: string;
