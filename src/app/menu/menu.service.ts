@@ -4,6 +4,7 @@ import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { MenuModel } from './menu.model';
+import { ApiEndpoints } from '../services/api-endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class MenuService {
   constructor(public http: HttpClient) { }
 
   getMenuItems() {
-    this.http.get<any[]>('/api/item/foods')
+    this.http.get<any[]>( ApiEndpoints.GET_FOODS )
       .pipe(map((postItems) => {
         return postItems.map(item => {
           return {
@@ -39,7 +40,7 @@ export class MenuService {
 
     const item: MenuModel = { _id: null, name: uname, type: utype, quantity: uquantity, price: uprice, img: link };
 
-    return this.http.post<any>('/api/item/add', item);
+    return this.http.post<any>( ApiEndpoints.ADD_FOOD , item);
 
     // .subscribe(resData => {
     //   item._id = resData.id;
@@ -54,7 +55,7 @@ export class MenuService {
 
 
   deleteItem(itemId: string) {
-    this.http.delete('/api/item/delete/' + itemId)
+    this.http.delete(ApiEndpoints.REMOVE_FOOD + itemId)
       .subscribe(() => {
         const newUpdatedItems = this.menuItems.filter(item => item._id !== itemId);
         this.menuItems = newUpdatedItems;

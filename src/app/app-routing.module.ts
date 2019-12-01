@@ -23,9 +23,9 @@ const routes: Routes = [
   { path: 'reg', component: RegistrationComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'contact', component: ContactUsComponent },
-  { path: 'add/item', component: AddItemComponent },
+  { path: 'add/item', component: AddItemComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutUsComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuListComponent, canActivate: [AuthGuard] },
   { path: '', component: LandingComponent }
   // { path: 'about', component: AboutUsComponent }

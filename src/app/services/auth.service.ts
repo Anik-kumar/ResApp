@@ -10,6 +10,7 @@ export class AuthService {
   constructor() { }
 
   private authToken: string;
+  private isLoggedIn = false;
 
   private loggedInUser: {_id: string, name: string, email: string, dob: string } = {
     _id: null,
@@ -17,8 +18,6 @@ export class AuthService {
     email: '',
     dob: ''
   };
-
-  private isLoggedIn = false;
 
   public getLoggedInStatus() {
     return this.isLoggedIn;

@@ -6,15 +6,14 @@
   <mat-sidenav #sidenav mode="side" opended>
     <mat-nav-list>
 
-      <a mat-list-item href="/">Home</a>
-      <a mat-list-item routerLink="/add/item">Add Item</a>
-      <a mat-list-item routerLink="/checkout">Checkout</a>
-
-      <a mat-list-item routerLink="/about">About</a>
-      <a mat-list-item routerLink="/contact">Contact</a>
-      <a mat-list-item routerLink="/reg">Registration</a>
-      <a mat-list-item routerLink="/login">Login</a>
-      <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+      <a mat-list-item *ngIf="loggedIn" routerLink="/">Home</a>
+      <a mat-list-item *ngIf="!loggedIn" routerLink="/landing">Home</a>
+      <a mat-list-item *ngIf="loggedIn" routerLink="/add/item">Add Item</a>
+      <a mat-list-item *ngIf="loggedIn" routerLink="/checkout">Checkout</a>
+      <a mat-list-item *ngIf="!loggedIn" routerLink="/about">About</a>
+      <a mat-list-item *ngIf="!loggedIn" routerLink="/contact">Contact</a>
+      <a mat-list-item *ngIf="!loggedIn" routerLink="/reg">Registration</a>
+      <a mat-list-item *ngIf="!loggedIn" routerLink="/login">Login</a>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -36,7 +35,7 @@
       <!-- <span class="example-fill-remaining-space"></span> -->
       <div>
 
-        <a mat-button href="">Home</a>
+        <!--<a mat-button href="/">Home</a>-->
         <!-- <button mat-button routerLink="/menu">Menu</button>-->
         <!-- <a mat-button routerLink="/menu">Menu</a> -->
         <!--      <button mat-button [matMenuTriggerFor]="menu" (click)="loadMenu()" [routerLink]="'/menu'">Menu</button>-->
@@ -46,20 +45,25 @@
         <!--        <a mat-menu-item>Beverage</a>-->
         <!-- </mat-menu> -->
 
-        <a mat-button routerLink="/menu">Menu List</a>
-        <a mat-button routerLink="/add/item">Add Item</a>
-        <a mat-button routerLink="/checkout">Checkout</a>
-        <a mat-button routerLink="/about">About</a>
-        <a mat-button routerLink="/contact">Contact</a>
-        <a mat-button routerLink="/reg">Registration</a>
-        <a mat-button routerLink="/login">Login</a>
-        <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+
+        <a mat-button *ngIf="loggedIn" routerLink="/">Home</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/landing">Home</a>
+        <a mat-button *ngIf="loggedIn" routerLink="/add/item">Add Item</a>
+        <a mat-button *ngIf="loggedIn" routerLink="/checkout">Checkout</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/about">About</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/contact">Contact</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/reg">Registration</a>
+        <a mat-button *ngIf="!loggedIn" routerLink="/login">Login</a>
       </div>
 
     </mat-toolbar>
 
     <main>
+      <!--<p *ngIf="loggedIn" >Loggin</p>-->
+      <!--<p *ngIf="!loggedIn" >Not Loggin</p>-->
+      <!--<p>{{loggedIn}}</p>-->
       <router-outlet></router-outlet>
+
     </main>
 
     <app-footer></app-footer>

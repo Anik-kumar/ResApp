@@ -6,7 +6,7 @@ import { UserModel } from '../registration/user.model';
 import { UserApiService } from './user-api.service';
 import { AuthService } from './auth.service';
 // = '../../../server/controllers/AuthController.js';
-declare var authController: any ;
+// declare var authController: any ;
 
 @Injectable({
   providedIn: 'root'
@@ -104,9 +104,9 @@ export class CommonService {
 
   }
 
-  async checkCookiesOnLogin(){
-    const hasCookie = await this.http.get('/api/auth/checkcookie');
-    // let hasCookie = document.cookie;
+  async checkCookiesOnLogin() {
+    // const hasCookies = await this.http.get('/api/auth/checkcookie');
+    const hasCookie = document.cookie.split(';').filter((item) => item.trim().startsWith('token=')).length;
     if (hasCookie) {
       console.log('CommonService => Cookie Exists', hasCookie);
     } else {

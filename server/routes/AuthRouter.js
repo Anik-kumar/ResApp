@@ -4,7 +4,7 @@ const router = express.Router();
 // router.use(cookieParser());
 const authService = require('./../services/AuthService');
 const userService = require('../services/UserServices');
-const authController = require('./../controllers/AuthController');
+const tokenService = require('../services/TokenService');
 const LogUtill = require('../Utill/LogUtill');
 
 
@@ -76,25 +76,31 @@ router.get('/token', async (req, res, next) => {
 
 router.get('/checkcookie', (req, res) => {
   const user = req.signedCookies['Username'];
-  const pass = req.signedCookies['Password']
+  const pass = req.signedCookies['Password'];
+  const token = req.headers['x-access-token'] || req.headers['authorization'];
 
-  if(user && pass){
-    console.log("Cookies exists ", user, pass);
+
+  if(token){
+    console.log("Cookies exists token => ", token);
+    console.log("Cookies exists token2 => ");
   }
-  console.log('username ' + user);
-  console.log('password ' + pass);
+  // console.log('username ' + user);
+  // console.log('password ' + pass);
+  console.log('token ' + token);
+  console.log('token2 ' );
   console.log('cookies ' , req.cookies);
-  console.log('cookies ' , req.signedCookies);
+  // console.log('cookies ' , req.signedCookies);
   console.log('session id ' , req.session.id);
-  console.log('session uniqueid ' , req.session.uniqueId);
+  // let obj = req;
+  console.log('Response ' , req);
+  // console.log('session uniqueid ' , req.session.uniqueId);
 
   res.status(200).json({
     username: user,
     password: pass,
+    token: token,
     cookies1: req.cookies,
-    cookies2: req.signedCookies,
-    sessionId: req.session.id,
-    sessionUId: req.session.uniqueId
+    sessionId: req.session.id
   });
 });
 

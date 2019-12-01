@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../registration/user.model';
+import { ApiEndpoints } from './api-endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class RegistrationService {
       };
       // console.log(user);
       try {
-        this.http.post<{id: string}>('/api/user/reg', user)
+        this.http.post<{id: string}>( ApiEndpoints.REG_USER , user)
           .subscribe(resData => {
             console.log('RegService => ', resData);
           });
